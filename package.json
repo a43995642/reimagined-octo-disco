@@ -1,0 +1,36 @@
+{
+  "name": "halal-scanner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "cap:sync": "cap sync",
+    "cap:open": "cap open android",
+    "clean-setup": "rm -rf node_modules package-lock.json android && npm install && npm run build && npx cap add android && npx cap sync",
+    "setup-android": "chmod +x setup-android.sh && ./setup-android.sh",
+    "build-apk": "npm run setup-android && npm run build && npx cap sync && chmod +x android/gradlew && (cd android && ./gradlew assembleDebug)"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@google/genai": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  }
+}
